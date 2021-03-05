@@ -14,8 +14,25 @@
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+@import "../../styles/variables";
+
 .page {
-  max-width: 1024px;
   margin: 0 auto;
-  padding: 12px;
+  padding: 12px 168px;
+}
+
+/* phone breakpoint */
+@media (max-width: $query-phone-max-width) {
+  .page {
+    margin: 0 auto;
+    padding: 12px 0px;
+  }
+}
+
+/* tablet breakpoint */
+@media (min-width: 651px) and (max-width: 1200px) {
+  .page {
+    margin: 0 auto;
+    padding: 12px 12px;
+  }
 }

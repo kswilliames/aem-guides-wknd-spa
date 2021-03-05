@@ -20,20 +20,28 @@
 @max_col: 12;
 @gutter-padding: 7px;
 
+/* query breakpoints */
+@query-phone-max-width: 650px;
+@query-tablet-min-width: 651px;
+@query-tablet-max-width: 1200px;
+
 /* default breakpoint */
 .aem-Grid {
   .generate-grid(default, @max_col);
 }
 
 /* phone breakpoint */
-@media (max-width: 650px) {
+@media (max-width: @query-phone-max-width) {
   .aem-Grid {
     .generate-grid(phone, @max_col);
+  }
+  .aem-GridColumn {
+    padding: 0;
   }
 }
 
 /* tablet breakpoint */
-@media (min-width: 651px) and (max-width: 1200px) {
+@media (min-width: @query-tablet-min-width) and (max-width: @query-tablet-max-width) {
   .aem-Grid {
     .generate-grid(tablet, @max_col);
   }
