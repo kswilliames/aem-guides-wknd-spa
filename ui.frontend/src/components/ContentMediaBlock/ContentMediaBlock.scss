@@ -4,7 +4,6 @@
   padding-top: $space-xl;
   padding-bottom: $space-xl;
   display: flex;
-  //   flex-flow: row wrap;
   justify-content: space-between;
 }
 
@@ -58,7 +57,6 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  //   flex: 1;
 }
 
 .ContentMediaBlock__content__align-left {
