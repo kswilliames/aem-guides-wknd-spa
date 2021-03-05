@@ -1,40 +1,86 @@
-import React, {Component} from 'react';
-import Image from '../Image/Image';
-import {MapTo} from '@adobe/aem-react-editable-components';
-
+import React from "react";
+import Image from "../Image/Image";
+import { MapTo } from "@adobe/aem-react-editable-components";
+import { Link } from "react-router-dom";
+require("./Card.scss");
 
 export const CardEditConfig = {
+  emptyLabel: "Card",
 
-    emptyLabel: 'Card',
-
-    isEmpty: function(props) {
-        return !props || !props.src || props.src.trim().length < 1;
-    }
+  isEmpty: function (props) {
+    return !props || !props.src || props.src.trim().length < 1;
+  },
 };
 
-export default class Card extends Component {
+const getLastModifiedDisplayDate = (cardLastModified) => {
+  const lastModifiedDate = cardLastModified ? new Date(cardLastModified) : null;
 
-    get imageContent() {
-        return (
-            <div className="Card__image">
-                <Image {...this.props} />
-            </div>)
-    }
+  if (lastModifiedDate) {
+    return lastModifiedDate.toLocaleDateString();
+  }
+  return null;
+};
 
-    get bodyContent() {
-        return null;
-    }
+const ImageContent = (props) => (
+  <div className="Card__image">
+    <Image {...props} />
+  </div>
+);
 
-    render() {
-        if(CardEditConfig.isEmpty(this.props)) {
-            return null;
-        }
+const BodyContent = ({
+  cardTitle,
+  lastModifiedDisplayDate,
+  ctaLinkURL,
+  ctaText,
+  title,
+}) => (
+  <div class="Card__content">
+    <h2 class="Card__title">
+      {" "}
+      {cardTitle}
+      <span class="Card__lastmod">{lastModifiedDisplayDate}</span>
+    </h2>
+    {<CtaButton ctaLinkURL={ctaLinkURL} ctaText={ctaText} title={title} />}
+  </div>
+);
 
-        return (<div className="Card">
-                {this.imageContent}
-                {this.bodyContent}
-            </div>);
-    }
-}
+const CtaButton = ({ ctaLinkURL, ctaText, title }) => {
+  if (ctaLinkURL && ctaText) {
+    return (
+      <div className="Card__action-container">
+        <Link to={ctaLinkURL} title={title} className="Card__action-link">
+          {ctaText}
+        </Link>
+      </div>
+    );
+  }
 
-MapTo('wknd-spa-react/components/card')(Card, CardEditConfig);
+  return null;
+};
+
+const Card = (props) => {
+  const { cardLastModified, ctaLinkURL, ctaText, title } = props;
+  if (CardEditConfig.isEmpty(props)) {
+    return null;
+  }
+
+  const lastModifiedDisplayDate = getLastModifiedDisplayDate(cardLastModified);
+
+  return (
+    <div className="Card">
+      {<ImageContent {...props} />}
+      {
+        <BodyContent
+          ctaLinkURL={ctaLinkURL}
+          ctaText={ctaText}
+          title={title}
+          lastModifiedDisplayDate={lastModifiedDisplayDate}
+        />
+      }
+    </div>
+  );
+};
+
+export default Card;
+
+MapTo("wknd-spa-react/components/card")(Card, CardEditConfig);
