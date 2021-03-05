@@ -1,0 +1,33 @@
+{
+  "content-media-block": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "wknd-spa-react/components/content/content-media-block",
+    "heading": "Captain Kirk is climbing a mountain",
+    "preHeading": "Why is he climbing that mountain?",
+    "body": "Is it because he's in love?",
+    "buttonText": "Find out more...",
+    "linkPath": "/content/the-mountain",
+    "alignment": "left"
+  },
+  "empty": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "wknd-spa-react/components/content/content-media-block"
+  },
+  "without-heading": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "wknd-spa-react/components/content/content-media-block",
+    "body": "Is it because he's in love?",
+    "linkPath": "/content/the-mountain"
+  },
+  "without-page-title": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "wknd-spa-react/components/content/content-media-block",
+    "headingFromPage": true,
+    "linkPath": "/content/the-mountain"
+  },
+  "without-body": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "wknd-spa-react/components/content/content-media-block",
+    "heading": "Captain Kirk is climbing a mountain"
+  }
+}
